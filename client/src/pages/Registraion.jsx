@@ -89,9 +89,7 @@ const Registration = () => {
 
 
 
-<div>      <label id='label' htmlFor="">PASSWORD </label><br />
-      <input id='inp' type="password" name="password" onChange={handleInput}  placeholder='  e.g +91 JohnD#123'/> <br />
-      </div>
+
       </div>
 
       <Button  id='bt1'     style={{backgroundColor:" rgb(90, 9, 17)",marginLeft:"200px",marginTop:"30px"}} type="submit" onClick={handleSubmit}>
