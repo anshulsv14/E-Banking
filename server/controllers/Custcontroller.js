@@ -13,7 +13,8 @@ const Registration=async(req, res)=>{
             city:city,
             mobile:mobile,
             pincode:pincode,
-            email:email
+            email:email,
+            password:mypass
            
         })
 
@@ -32,23 +33,21 @@ var mailtransporter = nodemailer.createTransport({
   
   var mailDetails = {
     from: 'anshulsv14@gmail.com',
-    to: 'email',
+    to: email,
     subject: 'E-banking registration',
-    text: `Dear ${name} Your account has been created successfully`
+    text: `Dear ${name} Your account has been created successfully and Your pssword is "${mypass}"`
   };
   
-  mailtransporter.sendMail(mailDetails, function(error, info){
+  mailtransporter.sendMail(mailDetails, (error, info) => {
     if (error) {
-      console.log(error);
+      console.error('Error sending email:', error);
     } else {
-      console.log('Email sent successfully ');
+      console.log('Email sent:', info.response);
     }
   });
+
+
 }
-
-
-
-
 module.exports ={
    Registration
  
