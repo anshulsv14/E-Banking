@@ -216,3 +216,67 @@ background-color: rgb(90, 9, 17);
   margin-top: 20px;
   font-size: 14px;
 }
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  background-color: #f4f4f9;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card h2 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.card p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.transaction-history {
+  grid-column: span 2;
+}
+
+.quick-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn {
+  background: #4F46E5;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #3b36c6;
+}
+
+.btn.outline {
+  background: transparent;
+  color: #4F46E5;
+  border: 2px solid #4F46E5;
+}
+
+.btn.outline:hover {
+  background: #4F46E5;
+  color: white;
+}

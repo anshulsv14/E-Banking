@@ -4,6 +4,7 @@ import Layout from "./Layout";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Registration from "./pages/Registraion";
+import Dashboard from "./pages/Dashboard";
 
 
 
@@ -21,6 +22,9 @@ const App=()=>{
         <Route path="/registration" element={<Registration/>}/>
 
         </Route>
+      </Routes>
+      <Routes>
+      <Route path="/dashboard" element={<Dashboard/>}></Route>
       </Routes>
     </BrowserRouter>
 

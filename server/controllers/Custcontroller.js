@@ -35,7 +35,7 @@ var mailtransporter = nodemailer.createTransport({
     from: 'anshulsv14@gmail.com',
     to: email,
     subject: 'E-banking registration',
-    text: `Dear ${name} Your account has been created successfully and Your pssword is "${mypass}"`
+    text: `Dear ${name} Your account has been created successfully \n Your pssword is "${mypass}"`
   };
   
   mailtransporter.sendMail(mailDetails, (error, info) => {
