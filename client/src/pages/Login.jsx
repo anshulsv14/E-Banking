@@ -24,7 +24,10 @@ const Login=()=>{
         
           
           toast.success("You are Succesfully login!");
-          navigate("/home");
+          navigate("/dashboard");
+          localStorage.setItem("username" , response.data.name)
+          localStorage.setItem("userid" , response.data._id)
+          localStorage.setItem("email" , response.data.email)
  
     } catch (error) {
         toast.error(error.response.data.msg);
@@ -68,6 +71,7 @@ const Login=()=>{
       </Button>
       </div>
   
+      Ly)e?tZd
   
 
     <ToastContainer />

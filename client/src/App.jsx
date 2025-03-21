@@ -5,6 +5,9 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Registration from "./pages/Registraion";
 import Dashboard from "./pages/Dashboard";
+import Submitcash from "./pages/Submitcash";
+import Withdraw from "./pages/Withdraw";
+import Balanceinquiry from "./pages/Balanceinquiry";
 
 
 
@@ -24,7 +27,12 @@ const App=()=>{
         </Route>
       </Routes>
       <Routes>
-      <Route path="/dashboard" element={<Dashboard/>}></Route>
+      <Route path="/dashboard" element={<Dashboard/>}>
+        <Route path="/dashboard/submit" element={<Submitcash/>}/>
+        <Route path="/dashboard/withdraw" element={<Withdraw/>}/>
+        <Route path="/dashboard/balanceinquiry" element={<Balanceinquiry/>}/>
+      
+      </Route>
       </Routes>
     </BrowserRouter>
 

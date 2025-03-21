@@ -30,7 +30,7 @@ const Registration = () => {
          const response = await axios.post(api, input);
          console.log(response);
          toast.success(response.data.msg);
-         setShow(false)
+       
      } catch (error) {
          console.log(error);
 
