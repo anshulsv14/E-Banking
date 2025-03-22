@@ -6,6 +6,7 @@ import axios from 'axios'
 const Withdraw = () => {
     const [gif,setGif] = useState(false)
     const [amount,setAmount] = useState("")
+    
     const customerid = localStorage.getItem("userid")
     const handlesubmit = async()=>{
         let api=`${BASE_URL}/Banking/transaction`;
@@ -19,8 +20,10 @@ const Withdraw = () => {
   return (
     
       <div> 
+        
         <h1 style={{marginBottom:"10px"}}>Withdrawal Amount with One Click</h1>
        <div id='bal'>
+      
       <label id='label' htmlFor="">Enter withdrawal Amount</label><br />
       <input id='inp' type="text"   name="amount" onChange={(e)=>{setAmount(e.target.value)}}/> 
       <button id='button1' onClick={handlesubmit}>withdraw</button>

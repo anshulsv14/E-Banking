@@ -30,6 +30,10 @@ import { useEffect } from "react";
   
     nav("/dashboard/balanceinquiry")
   }
+  function navigate4 (){
+  
+    nav("/dashboard/accountstatement")
+  }
   return (
     <>
     <div id="container">
@@ -38,7 +42,7 @@ import { useEffect } from "react";
         <div style={{display:"flex",gap:"10px"}}>
         <h1>welcome : </h1> <h1>{  username}</h1>
         </div>
-        <h2>{email}</h2>
+        
         
       </div>
         <div id="section" style={{display:"flex"}}>
@@ -46,7 +50,7 @@ import { useEffect } from "react";
             <button id="b1"  onClick={navigate1}>submit cash</button><br />
             <button  id="b1" onClick={navigate2}>withdraw cash</button><br />
             <button  id="b1" onClick={navigate3}>balance enquiry</button><br />
-            <button  id="b1" onClick={navigate3}>statements</button><br />
+            <button  id="b1" onClick={navigate4}>Account statements</button><br />
             <button  id="b1" onClick={navigate3}>account details</button><br />
             <button  id="b1" onClick={navigate3}>reset password</button><br />
             <button  id="b1" onClick={logout}>logout</button>

@@ -8,6 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Submitcash from "./pages/Submitcash";
 import Withdraw from "./pages/Withdraw";
 import Balanceinquiry from "./pages/Balanceinquiry";
+import Accountstatement from "./pages/Accountstatement";
 
 
 
@@ -31,6 +32,7 @@ const App=()=>{
         <Route path="/dashboard/submit" element={<Submitcash/>}/>
         <Route path="/dashboard/withdraw" element={<Withdraw/>}/>
         <Route path="/dashboard/balanceinquiry" element={<Balanceinquiry/>}/>
+        <Route path="/dashboard/accountstatement" element={<Accountstatement/>}/>
       
       </Route>
       </Routes>

@@ -80,10 +80,17 @@ const ShowBalance = async(req,res)=>{
   const data = await transactionModel.find({customerid:userid})
   res.send(data)
 }
+
+const AccStatement =async(req,res)=>{
+  const {userid} = req.query
+  const statement = await transactionModel.find({customerid:userid}).sort({date:-1}).limit(10)
+  res.send(statement)
+}
 module.exports ={
    Registration,
    CustLogin,
    SubmitCash,
-   ShowBalance
+   ShowBalance,
+   AccStatement
  
 }
