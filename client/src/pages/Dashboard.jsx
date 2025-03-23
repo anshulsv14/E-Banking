@@ -34,6 +34,10 @@ import { useEffect } from "react";
   
     nav("/dashboard/accountstatement")
   }
+  function navigate6 (){
+  
+    nav("/dashboard/resetpassword")
+  }
   return (
     <>
     <div id="container">
@@ -52,7 +56,7 @@ import { useEffect } from "react";
             <button  id="b1" onClick={navigate3}>balance enquiry</button><br />
             <button  id="b1" onClick={navigate4}>Account statements</button><br />
             <button  id="b1" onClick={navigate3}>account details</button><br />
-            <button  id="b1" onClick={navigate3}>reset password</button><br />
+            <button  id="b1" onClick={navigate6}>reset password</button><br />
             <button  id="b1" onClick={logout}>logout</button>
           </div>
           <div id="rightbar" style={{width:"80%"}}>

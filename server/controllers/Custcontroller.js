@@ -86,11 +86,15 @@ const AccStatement =async(req,res)=>{
   const statement = await transactionModel.find({customerid:userid}).sort({date:-1}).limit(10)
   res.send(statement)
 }
+const ResetPassword =(req,res)=>{
+   console.log(oldpassword)
+}
 module.exports ={
    Registration,
    CustLogin,
    SubmitCash,
    ShowBalance,
-   AccStatement
+   AccStatement,
+   ResetPassword
  
 }
