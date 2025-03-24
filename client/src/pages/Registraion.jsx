@@ -31,7 +31,7 @@ const Registration = () => {
   };
   return (
     <>
-      <div id="build3">
+      {/* <div id="build3">
         <h1
           style={{
             color: "black",
@@ -54,7 +54,7 @@ const Registration = () => {
           We suggest including an email and phone number.
         </h6>
 
-        <div
+        <div id=""
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
@@ -166,21 +166,102 @@ const Registration = () => {
             />{" "}
             <br />
           </div>
+        </div> */}
+
+        <div id="build3">
+      <h1 className="title">REGISTRATION</h1>
+      <h6 className="subtitle">
+        We suggest including an email and phone number.
+      </h6>
+
+      <div id="form-grid">
+        <div className="form-group">
+          <label htmlFor="name">FULL NAME</label>
+          <input
+            type="text"
+            name="name"
+            onChange={handleInput}
+            placeholder="e.g John Doe"
+          />
         </div>
 
-        <Button
+        <div className="form-group">
+          <label htmlFor="email">EMAIL</label>
+          <input
+            type="email"
+            name="email"
+            onChange={handleInput}
+            placeholder="e.g Johndoe123@gmail.com"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="address">ADDRESS</label>
+          <input
+            type="text"
+            name="address"
+            onChange={handleInput}
+            placeholder="e.g gali no. 3 pareshan mohalla"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="city">CITY</label>
+          <input
+            type="text"
+            name="city"
+            onChange={handleInput}
+            placeholder="e.g Bhopal"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="pincode">PINCODE</label>
+          <input
+            type="text"
+            name="pincode"
+            onChange={handleInput}
+            placeholder="e.g 677865"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="state">STATE</label>
+          <input
+            type="text"
+            name="state"
+            onChange={handleInput}
+            placeholder="e.g Madhya Pradesh"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="mobile">MOBILE NO.</label>
+          <input
+            type="text"
+            name="mobile"
+            onChange={handleInput}
+            placeholder="e.g +91 7769823576"
+          />
+        </div>
+      </div>
+      <Button
           id="bt1"
           style={{
             backgroundColor: " rgb(90, 9, 17)",
-            marginLeft: "200px",
+           
             marginTop: "30px",
+            margin:"auto"
           }}
           type="submit"
           onClick={handleSubmit}
         >
           Submit
         </Button>
-      </div>
+    </div>
+
+       
+      
       <ToastContainer />
     </>
   );

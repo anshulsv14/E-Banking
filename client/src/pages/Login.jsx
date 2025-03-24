@@ -40,33 +40,36 @@ const Login=()=>{
     return(
         <>
       
-      <div id='build3'>    
-      
-       
-      <h1 style={{color:"black",marginLeft:"200px",marginBottom:"20px",marginTop:"20px"}}>LOGIN</h1>
-     
-      <h6 style={{maxWidth:"500px",marginLeft:"200px",marginBottom:"20px",color:"grey"}}>Dont'worry your details are safe with us</h6>
-     
-      <div style={{display:"grid", gridTemplateColumns:"1fr 1fr",width:"70%",margin:"auto"}}>
-     
-      <div>
-      <label id='label' htmlFor="">Email </label><br />
-      <input id='inp'type="email" name="email" value={email} 
-        onChange={(e)=>{setEmail(e.target.value)}}  placeholder='  e.g Johndoe123@gmail.com'/> <br />
+      <div id="build3">
+      <h1 className="title">LOGIN</h1>
+      <h6 className="subtitle">Don't worry, your details are safe with us</h6>
+
+      <div id="form-grid">
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="e.g Johndoe123@gmail.com"
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password">PASSWORD</label>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="e.g JohnD#123"
+          />
+        </div>
       </div>
+    
 
-   
-
-
-
-<div>      <label id='label' htmlFor="">PASSWORD </label><br />
-      <input id='inp'
-        type="password" name="password" value={password}
-        onChange={(e)=>{setPassword(e.target.value)}}  placeholder='  e.g +91 JohnD#123'/> <br />
-      </div>
-      </div>
-
-      <Button id='bt1'     style={{backgroundColor:" rgb(90, 9, 17)",marginLeft:"200px",marginTop:"30px"}} type="submit" onClick={handleSubmit}>
+      <Button id='bt1'     style={{backgroundColor:" rgb(90, 9, 17)",marginTop:"30px"}} type="submit" onClick={handleSubmit}>
         Submit
       </Button>
       </div>
