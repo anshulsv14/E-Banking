@@ -8,8 +8,8 @@ route.post("/transaction", Custcontroller.SubmitCash);
 route.get("/balenquiry", Custcontroller.ShowBalance);
 route.post("/accstatement", Custcontroller.AccStatement);
 route.post("/passwordreset", Custcontroller.ResetPassword);
-
-
+route.post("/ministatement", Custcontroller.MiniStatement)
+route.post("/accInfo", Custcontroller.AccInfo)
 
 
 

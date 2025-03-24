@@ -7,6 +7,7 @@ const transactionSchema = new mongoose.Schema({
      },
      amount : Number,
      status : String,
+     description:String,
      date : {
         type : Date,
         default : Date.now

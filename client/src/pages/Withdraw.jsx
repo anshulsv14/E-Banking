@@ -3,6 +3,7 @@ import { useState } from 'react'
 import BASE_URL from '../configuration/Config'
 import axios from 'axios'
 
+
 const Withdraw = () => {
     const [gif,setGif] = useState(false)
     const [amount,setAmount] = useState("")
@@ -10,8 +11,8 @@ const Withdraw = () => {
     const customerid = localStorage.getItem("userid")
     const handlesubmit = async()=>{
         let api=`${BASE_URL}/Banking/transaction`;
-       const res =await axios.post(api,{amount:amount,status:"debit",customerid:customerid})
-   
+       const res =await axios.post(api,{amount:amount,status:"debit",customerid:customerid,description:"cash withdraw"})
+      
        setGif(true)
     }
     setTimeout(()=>{
@@ -19,10 +20,10 @@ const Withdraw = () => {
     },3000)
   return (
     
-      <div> 
+    <div id='bal' style={{width:"700px",margin:"auto",textAlign:"center",marginTop:"50px"}}>
         
         <h1 style={{marginBottom:"10px"}}>Withdrawal Amount with One Click</h1>
-       <div id='bal'>
+       <div >
       
       <label id='label' htmlFor="">Enter withdrawal Amount</label><br />
       <input id='inp' type="text"   name="amount" onChange={(e)=>{setAmount(e.target.value)}}/> 
@@ -31,9 +32,9 @@ const Withdraw = () => {
       {gif && (
  <div style={{marginLeft:"20px",paddingTop:"10px"}}> <img  src="/public/return bank GIF.gif" alt="" height="250px"  /></div>
       )}
-    
+     
     </div>
-    
+     
   )
 }
 

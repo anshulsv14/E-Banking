@@ -6,8 +6,14 @@ const CustomerSchema= new mongoose.Schema({
      city:String,
      mobile:String,
      pincode:String,
-     email:String,
-     password: String
+     email: {
+        type: String,
+        require: true,
+        unique: true,
+        lowercase:true
+    },
+     password: String,
+    account:String
 })
 
 module.exports = mongoose.model("Customer", CustomerSchema);

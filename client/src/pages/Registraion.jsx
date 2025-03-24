@@ -10,7 +10,7 @@ import BASE_URL from '../configuration/Config';
 
 const Registration = () => {
   const[input,setInput] = useState({})
-
+  
 
 
   const handleInput=(e)=>{
@@ -33,6 +33,7 @@ const Registration = () => {
        
      } catch (error) {
          console.log(error);
+         toast.error(error.response.data.msg)
 
      }
 

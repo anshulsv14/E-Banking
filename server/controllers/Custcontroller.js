@@ -2,10 +2,11 @@ const CustModel= require("../models/Custmodel");
 const Autopassword = require("../middleware/Autopassword")
 const nodemailer = require("nodemailer");
 const transactionModel = require("../models/TransactionModel")
-
+const Autoaccount = require("../middleware/Accno")
 const Registration=async(req, res)=>{
     const {name,address, city, mobile,pincode,email} = req.body; 
     const mypass = Autopassword.Autopassword()
+   const accno = Autoaccount.accNoGenerate()
     try {
         const Customer = await CustModel.create({
             name:name,
@@ -14,7 +15,9 @@ const Registration=async(req, res)=>{
             mobile:mobile,
             pincode:pincode,
             email:email,
-            password:mypass
+            password:mypass,
+            account:accno
+          
            
         })
 
@@ -52,7 +55,7 @@ const CustLogin  = async(req , res)=>{
   const{email , password} = req.body
   const data = await CustModel.findOne({email : email,password:password})
  try {
-   if(!data)
+   if(data.email!=email)
    {
      return res.status(400).send("Invalid email")
    }
@@ -62,32 +65,129 @@ const CustLogin  = async(req , res)=>{
    }
    res.status(200).send(data)
  } catch (error) {
-   res.status(400).send(error)
+   res.status(400).send({msg:"Data base not Work"})
  }
  
  }
  const SubmitCash = async(req ,res)=>{
-  const{amount , status , customerid} = req.body;
-  const data = await transactionModel.create({
-    amount : amount,
-    status : status,
-    customerid : customerid
-  })
-res.status(200).send(data)
+
+  const{amount , status , customerid,description} = req.body;
+  try {
+    const data = await transactionModel.create({
+      amount : amount,
+      status : status,
+      customerid : customerid,
+      description:description
+      
+    })
+    res.status(200).send(data)
+  } catch (error) {
+    res.status(400).send(error)
+  }
+ 
 }
 const ShowBalance = async(req,res)=>{
   const {userid} = req.query
-  const data = await transactionModel.find({customerid:userid})
-  res.send(data)
+  try {
+    const data = await transactionModel.find({customerid:userid})
+    res.send(data)
+  }
+  
+  catch (error) {
+    res.status(400).send(error)
+  }
+ 
+ 
 }
 
 const AccStatement =async(req,res)=>{
   const {userid} = req.query
   const statement = await transactionModel.find({customerid:userid}).sort({date:-1}).limit(10)
+  
   res.send(statement)
 }
-const ResetPassword =(req,res)=>{
-   console.log(oldpassword)
+const ResetPassword = async(req,res)=>{
+ const  { oldpassword,newpassword,confirmnewpassword } = req.body;
+ const {id} = req.body
+ const data = await CustModel.findOne({ customerid:id})
+
+ 
+
+ if(oldpassword!=data.password){
+  return res.status(400).send({msg:"invalid old password"})
+ }
+
+ if(newpassword != confirmnewpassword)
+  {
+      return res.status(400).send({msg:"New Password Does Not Matched"})
+  }
+  
+  
+  const resetpassword = await CustModel.findByIdAndUpdate(id,{password:newpassword})
+res.status(200).send({msg:"Password Updated Successfully!"})
+
+ 
+ 
+}
+const MiniStatement = async (req,res) =>{
+  const {custid, fromDate, endDate} = req.body;
+  try {
+      if( !fromDate || !endDate)
+      {
+          return res.status(400).send("Both dates are required!")
+      }
+
+      const fromdate = new Date(fromDate);
+      const enddate = new Date(endDate);
+
+      if(fromdate > enddate)
+      {
+         return res.status(400).send("'From' Date can not be after 'To' Date");
+      }
+
+      if(fromdate.getTime() === enddate.getTime())
+      {
+         return res.status(400).send("Please Select two different Date!");
+      }
+
+      const transactions = await transactionModel.find({customerid:custid,
+          date:{
+              $gte: fromdate,
+              $lte: enddate
+          }
+      }).sort({date:-1}).limit(10)
+
+      if(!transactions.length)
+      {
+         return res.status(400).send("No Transactions found.")
+      }
+
+      res.status(200).send(transactions)
+  } 
+  
+  catch (error) {
+      console.log(error);
+      
+      res.status(400).send("Server Error :(")
+  }
+}
+const AccInfo = async (req,res)=>{
+  const {custid} = req.body;
+  
+  try {
+
+      let Info = await CustModel.findById(custid)
+
+      if (!Info) {
+          return res.status(404).send({ message: "User not found" });
+      }
+
+      res.status(200).send(Info);
+      
+  } catch (error)
+   {
+      res.status(400).send({message:"Error Loading Data"})
+  }
 }
 module.exports ={
    Registration,
@@ -95,6 +195,8 @@ module.exports ={
    SubmitCash,
    ShowBalance,
    AccStatement,
-   ResetPassword
+   ResetPassword,
+   MiniStatement,
+   AccInfo
  
 }

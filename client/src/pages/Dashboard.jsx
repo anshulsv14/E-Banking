@@ -7,7 +7,7 @@ import { useEffect } from "react";
 
 
   const logout = ()=>{
-      navigate("/login")
+      nav("/login")
       localStorage.clear()
      
   }
@@ -38,6 +38,14 @@ import { useEffect } from "react";
   
     nav("/dashboard/resetpassword")
   }
+  function navigate7 (){
+  
+    nav("/dashboard/ministatement")
+  }
+  function navigate5 (){
+  
+    nav("/dashboard/accountdetails")
+  }
   return (
     <>
     <div id="container">
@@ -55,7 +63,8 @@ import { useEffect } from "react";
             <button  id="b1" onClick={navigate2}>withdraw cash</button><br />
             <button  id="b1" onClick={navigate3}>balance enquiry</button><br />
             <button  id="b1" onClick={navigate4}>Account statements</button><br />
-            <button  id="b1" onClick={navigate3}>account details</button><br />
+            <button  id="b1" onClick={navigate7}>Mini statements</button><br />
+            <button  id="b1" onClick={navigate5}>account details</button><br />
             <button  id="b1" onClick={navigate6}>reset password</button><br />
             <button  id="b1" onClick={logout}>logout</button>
           </div>

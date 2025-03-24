@@ -10,6 +10,8 @@ import Withdraw from "./pages/Withdraw";
 import Balanceinquiry from "./pages/Balanceinquiry";
 import Accountstatement from "./pages/Accountstatement";
 import Resetpassword from "./pages/Resetpassword";
+import Ministatement from "./pages/Ministatement";
+import Accountdetails from "./pages/Accountdetails";
 
 
 
@@ -35,6 +37,8 @@ const App=()=>{
         <Route path="/dashboard/balanceinquiry" element={<Balanceinquiry/>}/>
         <Route path="/dashboard/accountstatement" element={<Accountstatement/>}/>
         <Route path="/dashboard/resetpassword" element={<Resetpassword/>}/>
+        <Route path="/dashboard/ministatement" element={<Ministatement/>}/>
+        <Route path="/dashboard/accountdetails" element={<Accountdetails/>}/>
       
       </Route>
       </Routes>

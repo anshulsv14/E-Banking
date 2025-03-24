@@ -36,6 +36,7 @@ const Accountstatement = () => {
         <tr>
          
           <th>Transation Date</th>
+          <th>Description</th>
           <th>Debited Money</th>
           <th>Credited Money</th>
         </tr>
@@ -46,7 +47,8 @@ const Accountstatement = () => {
             <tr>
                 
               
-             <td>{new Date(key.date).toLocaleDateString()}</td>
+                <td>{new Date(key.date).toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" })}</td>
+                <td>{key.description}</td>
               <td style={{color:"red"}}>{key.status === "debit" ? key.amount :""}</td>
               <td style={{color:"green"}}>{key.status === "credit" ? key.amount :""}</td>
             </tr>

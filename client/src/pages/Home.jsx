@@ -80,7 +80,7 @@ const Home = () => {
       
       </div>
 
-WELCOME TO HOME 
+
     </>
 
   )
