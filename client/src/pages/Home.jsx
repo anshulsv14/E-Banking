@@ -6,7 +6,7 @@ const Home = () => {
     <> 
     
    <div id='hero'>
-
+    
 
      
 

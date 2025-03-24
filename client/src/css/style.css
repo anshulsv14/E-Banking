@@ -20,7 +20,7 @@ background-color: rgb(90, 9, 17);
 }
 #hero
 {
-  background-image: url("her1.JPG");
+  background-image: url("/public/her1.JPG");
   height: 90vh;
   background-repeat: no-repeat;
 
