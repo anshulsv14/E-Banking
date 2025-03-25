@@ -57,7 +57,14 @@ const Resetpassword = () => {
           onChange={handleinput}
         />
         <br />
-        <button id="button1" onClick={handlesubmit}>
+        <button 
+         style={{
+          width: "100%",
+          padding: "10px",
+          marginTop: "20px",
+          fontSize: "1rem",
+        }}
+         id="button1" onClick={handlesubmit}>
           reset password
         </button>
       </div>

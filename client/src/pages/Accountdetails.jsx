@@ -41,7 +41,7 @@ if (!mydata) {
 
   return (
     <>
-     <div id='bal' style={{width:"700px",margin:"auto",textAlign:"center",marginTop:"50px"}}>
+     {/* <div id='bal' style={{width:"700px",margin:"auto",textAlign:"center",marginTop:"50px"}}>
     <div className="account-page">
       <h2 className="account-title">Account Information</h2>
       <div className="account-info">
@@ -54,6 +54,21 @@ if (!mydata) {
         <p><span>City:</span> {mydata.city}</p>
       </div>
     </div> 
+    </div> */}
+
+<div className="account-container">
+      <div className="account-page">
+        <h2 className="account-title">Account Information</h2>
+        <div className="account-info">
+          <p><span>Account Number:</span> {mydata.account}</p>
+          <p><span>IFSC Number:</span> PPB00001133422</p>
+          <p><span>Account Holder Name:</span> {mydata.name}</p>
+          <p><span>Email:</span> {mydata.email}</p>
+          <p><span>Mobile No:</span> {mydata.mobile}</p>
+          <p><span>Address:</span> {mydata.address}</p>
+          <p><span>City:</span> {mydata.city}</p>
+        </div>
+      </div>
     </div>
     </>
   )

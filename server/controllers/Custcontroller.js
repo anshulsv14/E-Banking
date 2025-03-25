@@ -65,7 +65,7 @@ const CustLogin  = async(req , res)=>{
    }
    res.status(200).send(data)
  } catch (error) {
-   res.status(400).send({msg:"Data base not Work"})
+   res.status(400).send({msg:"Invalid email or username"})
  }
  
  }
@@ -116,14 +116,14 @@ const ResetPassword = async(req,res)=>{
  if(oldpassword!=data.password){
   return res.status(400).send({msg:"invalid old password"})
  }
-
+ const resetpassword = await CustModel.findByIdAndUpdate(id,{password:newpassword})
  if(newpassword != confirmnewpassword)
   {
       return res.status(400).send({msg:"New Password Does Not Matched"})
   }
   
   
-  const resetpassword = await CustModel.findByIdAndUpdate(id,{password:newpassword})
+
 res.status(200).send({msg:"Password Updated Successfully!"})
 
  

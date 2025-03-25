@@ -26,19 +26,23 @@ const Withdraw = () => {
     <div
       id="bal"
       style={{
-        width: "700px",
+        maxWidth: "700px",
+        width: "90%",
         margin: "auto",
         textAlign: "center",
         marginTop: "50px",
+        padding: "20px",
+        boxSizing: "border-box",
       }}
     >
-      <h1 style={{ marginBottom: "10px" }}>Withdrawal Amount with One Click</h1>
+      <h1 style={{ fontSize: "1.5rem" }}>Withdrawal Amount with One Click</h1>
       <div>
         <label id="label" htmlFor="">
           Enter withdrawal Amount
         </label>
         <br />
         <input
+         style={{ width: "100%", padding: "10px", marginTop: "10px" }}
           id="inp"
           type="text"
           name="amount"
@@ -46,7 +50,14 @@ const Withdraw = () => {
             setAmount(e.target.value);
           }}
         />
-        <button id="button1" onClick={handlesubmit}>
+        <button 
+         style={{
+      width: "100%",
+      padding: "10px",
+      marginTop: "20px",
+      fontSize: "1rem",
+    }} id="button1"
+     onClick={handlesubmit}>
           withdraw
         </button>
       </div>

@@ -82,7 +82,7 @@ background-color: rgb(90, 9, 17);
     margin-top: 10px;
     margin-bottom: 15px;
     padding: 10px;
-    margin-left: 15px;
+    
     color: white;
 }
 #fhead
@@ -544,3 +544,47 @@ tr{
   }
 }
 
+.account-container {
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  margin-top: 50px;
+  padding: 20px;
+}
+
+.account-page {
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.account-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.account-info p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+.account-info span {
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .account-container {
+    width: 90%;
+  }
+
+  .account-title {
+    font-size: 20px;
+  }
+
+  .account-info p {
+    font-size: 14px;
+  }
+}
