@@ -27,10 +27,13 @@ const Resetpassword = () => {
       <div
         id="bal"
         style={{
-          width: "700px",
+          maxWidth: "700px",
+          width: "90%",
           margin: "auto",
           textAlign: "center",
           marginTop: "50px",
+          padding: "20px",
+          boxSizing: "border-box",
         }}
       >
         <h2>Reset Password</h2>
@@ -38,19 +41,23 @@ const Resetpassword = () => {
           Enter Old Password
         </label>
         <br />
-        <input id="inp" type="text" name="oldpassword" onChange={handleinput} />
+        <input  style={{ width: "100%", padding: "10px", marginTop: "10px" }}
+         id="inp" type="text" name="oldpassword" onChange={handleinput} />
         <br />
         <label id="label" htmlFor="">
           Enter New Password
         </label>
         <br />
-        <input id="inp" type="text" name="newpassword" onChange={handleinput} />
+        <input
+         style={{ width: "100%", padding: "10px", marginTop: "10px" }}
+          id="inp" type="text" name="newpassword" onChange={handleinput} />
         <br />
         <label id="label" htmlFor="">
           Confirm New Password
         </label>
         <br />
         <input
+         style={{ width: "100%", padding: "10px", marginTop: "10px" }}
           id="inp"
           type="text"
           name="confirmnewpassword"

@@ -37,54 +37,38 @@ function Dashboard() {
   }
   return (
     <>
-      <div id="container">
-        <div id="upperbar">
-          <img src="/public/logo-with-text.png" alt="" />
-          <div style={{ display: "flex", gap: "10px" }}>
-            <h1>welcome : </h1> <h1>{username}</h1>
-          </div>
+     
+
+<div className="container">
+      {/* Upper Bar */}
+      <div className="upperbar">
+        <img src="/public/logo-with-text.png" alt="Logo" className="logo" />
+        {/* <div className="welcome-text">
+          <h1>Welcome:</h1>
+          <h1 className="username">{username}</h1>
+        </div> */}
+      </div>
+      
+      {/* Main Section */}
+      <div className="section">
+        {/* Left Sidebar */}
+        <div className="leftbar">
+          <button className="nav-button" onClick={navigate1}>Submit Cash</button>
+          <button className="nav-button" onClick={navigate2}>Withdraw Cash</button>
+          <button className="nav-button" onClick={navigate3}>Balance Enquiry</button>
+          <button className="nav-button" onClick={navigate4}>Account Statements</button>
+          <button className="nav-button" onClick={navigate7}>Mini Statements</button>
+          <button className="nav-button" onClick={navigate5}>Account Details</button>
+          <button className="nav-button" onClick={navigate6}>Reset Password</button>
+          <button className="logout-button" onClick={logout}>Logout</button>
         </div>
-        <div id="section" style={{ display: "flex" }}>
-          <div id="leftbar" style={{ width: "20%" }}>
-            <button id="b1" onClick={navigate1}>
-              submit cash
-            </button>
-            <br />
-            <button id="b1" onClick={navigate2}>
-              withdraw cash
-            </button>
-            <br />
-            <button id="b1" onClick={navigate3}>
-              balance enquiry
-            </button>
-            <br />
-            <button id="b1" onClick={navigate4}>
-              Account statements
-            </button>
-            <br />
-            <button id="b1" onClick={navigate7}>
-              Mini statements
-            </button>
-            <br />
-            <button id="b1" onClick={navigate5}>
-              account details
-            </button>
-            <br />
-            <button id="b1" onClick={navigate6}>
-              reset password
-            </button>
-            <br />
-            <button id="b1" onClick={logout}>
-              logout
-            </button>
-          </div>
-          <div id="rightbar" style={{ width: "80%" }}>
-            <div id="r1">
-              <Outlet />
-            </div>
-          </div>
+        
+        {/* Right Content Area */}
+        <div className="rightbar">
+          <Outlet />
         </div>
       </div>
+    </div>
     </>
   );
 }

@@ -60,55 +60,36 @@ const Ministatement = () => {
   });
   return (
     <>
-      <div
-        id="bal"
-        style={{
-          width: "700px",
-          margin: "auto",
-          textAlign: "center",
-          marginTop: "50px",
-          marginBottom: "20px",
-        }}
-      >
-        <h1 className="mini-head" style={{ marginBottom: "20px" }}>
-          Mini Statement
-        </h1>
-        <div className="ministate">
-          <div className="dates">
-            <h3>
-              {" "}
-              from:{" "}
-              <input
-                id="inp"
-                type="date"
-                value={fromDate}
-                onChange={(e) => {
-                  setFromDate(e.target.value);
-                }}
-              />
-            </h3>
-            <h3>
-              {" "}
-              to:{" "}
-              <input
-                id="inp"
-                type="date"
-                value={endDate}
-                onChange={(e) => {
-                  setEndDate(e.target.value);
-                }}
-              />
-            </h3>
-          </div>
-          <button
-            id="button1"
-            onClick={handleSubmit}
-            className="ministate-button"
-          >
-            Get Statement
-          </button>
+    
+
+<div id="bal">
+      <h1 className="mini-head">Mini Statement</h1>
+      <div className="ministate">
+        <div className="dates">
+          <h3>
+            <span>From:</span>
+            <input
+              id="inp1"
+              type="date"
+              value={fromDate}
+              onChange={(e) => setFromDate(e.target.value)}
+            />
+          </h3>
+          <h3>
+            <span>To:</span>
+            <input
+              id="inp1"
+              type="date"
+              value={endDate}
+              onChange={(e) => setEndDate(e.target.value)}
+            />
+          </h3>
         </div>
+        <button id="button1" onClick={handleSubmit} className="ministate-button">
+          Get Statement
+        </button>
       </div>
+    </div>
       <Table striped bordered hover>
         <thead>
           <tr>

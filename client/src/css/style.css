@@ -588,3 +588,151 @@ tr{
     font-size: 14px;
   }
 }
+
+/* Dashboard.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.upperbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:rgb(90, 9, 17);
+  color: white;
+  padding: 10px;
+}
+
+.logo {
+  height: 40px;
+}
+
+.welcome-text {
+  display: flex;
+  gap: 10px;
+  font-size: 1.2rem;
+}
+
+.section {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.leftbar {
+  width: 100%;
+  background-color: #f4f4f4;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.nav-button, .logout-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-button {
+  background-color:rgb(90, 9, 17);
+  margin-top: 20px;
+  color: white;
+}
+
+.logout-button {
+  background-color: transparent;
+  color: rgb(90, 9, 17);
+  border: 1px solid black;
+  margin-top: 10px;
+}
+
+.rightbar {
+  flex: 1;
+  padding: 20px;
+  background-color: white;
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .section {
+    flex-direction: row;
+  }
+  
+  .leftbar {
+    width: 20%;
+  }
+  
+  .rightbar {
+    width: 80%;
+  }
+}
+
+#bal {
+  width: 90%;
+  max-width: 700px;
+  margin: auto;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.mini-head {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.ministate {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dates {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+.dates h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#inp1 {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 200px;
+}
+
+.ministate-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  max-width: 200px;
+  transition: background 0.3s;
+}
+
+.ministate-button:hover {
+  background-color: #0056b3;
+}
+
+@media (min-width: 600px) {
+  .dates {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
