@@ -39,7 +39,7 @@ function Dashboard() {
     <>
      
 
-<div className="container">
+<div className="containerdash">
       {/* Upper Bar */}
       <div className="upperbar">
         <img src="/public/logo-with-text.png" alt="Logo" className="logo" />
