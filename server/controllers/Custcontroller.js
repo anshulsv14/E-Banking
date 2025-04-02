@@ -106,29 +106,39 @@ const AccStatement =async(req,res)=>{
   
   res.send(statement)
 }
-const ResetPassword = async(req,res)=>{
- const  { oldpassword,newpassword,confirmnewpassword } = req.body;
- const {id} = req.body
- const data = await CustModel.findOne({ customerid:id})
 
- 
 
- if(oldpassword!=data.password){
-  return res.status(400).send({msg:"invalid old password"})
- }
- const resetpassword = await CustModel.findByIdAndUpdate(id,{password:newpassword})
- if(newpassword != confirmnewpassword)
-  {
-      return res.status(400).send({msg:"New Password Does Not Matched"})
+
+
+const PassReset = async (req, res) => {
+  const { custId , oldpassword, newpassword, repassword} = req.body;
+  const data = await CustModel.findById(custId)
+console.log(data.password)
+  try {
+  
+
+   
+      
+   if (oldpassword!=data.password) {
+          return res.status(400).send({msg:"Old Password Does Not Matched!"});
+      }
+
+      
+      if(newpassword != repassword)
+          {
+              return res.status(400).send({msg:"New Password Does Not Matched"})
+          }
+          
+          
+      await CustModel.findByIdAndUpdate(custId, {password:newpassword})
+      res.status(200).send({msg:"Password Updated Successfully!"})
   }
   
-  
+  catch (error) {
+      res.status(400).send(error)
+  }
 
-res.status(200).send({msg:"Password Updated Successfully!"})
-
- 
- 
-}
+};
 const MiniStatement = async (req,res) =>{
   const {custid, fromDate, endDate} = req.body;
   try {
@@ -195,7 +205,7 @@ module.exports ={
    SubmitCash,
    ShowBalance,
    AccStatement,
-   ResetPassword,
+   PassReset,
    MiniStatement,
    AccInfo
  

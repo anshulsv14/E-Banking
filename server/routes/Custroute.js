@@ -7,7 +7,7 @@ route.post("/customerlogin", Custcontroller.CustLogin);
 route.post("/transaction", Custcontroller.SubmitCash);
 route.get("/balenquiry", Custcontroller.ShowBalance);
 route.post("/accstatement", Custcontroller.AccStatement);
-route.post("/passwordreset", Custcontroller.ResetPassword);
+route.post("/resetpass", Custcontroller.PassReset);
 route.post("/ministatement", Custcontroller.MiniStatement)
 route.post("/accInfo", Custcontroller.AccInfo)
 

@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3>Flexwrap</h3>
+          <h3>Bankhub</h3>
           <p>We provide You The best Solutions related to Your Banking Problems</p>
         </div>
         <div className="footer-section">
@@ -28,7 +28,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; {new Date().getFullYear()} Online Doctor Appointment. All rights reserved.</p>
+        <p>&copy; {new Date().getFullYear()} E-banking . All rights reserved.</p>
       </div>
     </footer>
   );

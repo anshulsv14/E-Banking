@@ -1,80 +1,65 @@
-import React from "react";
-import { useState } from "react";
-import BASE_URL from "../configuration/Config";
-import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
-const Resetpassword = () => {
-  const [input, setInput] = useState({});
-  const id = localStorage.getItem("userid");
+import React, { useState } from "react";
 
-  const handleinput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    console.log(input);
-    setInput({ ...input, [name]: value });
-  };
-  const handlesubmit = async () => {
+import axios from "axios";
+
+import { useNavigate } from "react-router-dom";
+import BASE_URL from "../configuration/Config";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const Resetpassword = () => {
+  
+const nav = useNavigate();
+const [oldpassword,setOldpassword] = useState("")
+const [newpassword,setNewpassword] = useState("")
+const [repassword,setRepassword] = useState("")
+
+
+
+  const handleSubmit=async()=>{
+    let id = localStorage.getItem("userid")
+    
+
     try {
-      const api = `${BASE_URL}/Banking/passwordreset`;
-      const res = await axios.post(api, { ...input, customerid: id });
-      toast.success(res.data.msg);
+
+      let api = `${BASE_URL}/Banking/resetpass`;
+    let response = await axios.post(api, {custId:id, oldpassword:oldpassword, newpassword:newpassword,repassword:repassword})
+    
+   toast.success(response.data.msg);
+    
     } catch (error) {
-      toast.error(error.response.data.msg);
+  
+     toast.error(error.response.data.msg)
     }
-  };
+    
+  }
+
   return (
     <>
-      <div
-        id="bal"
-        style={{
-          maxWidth: "700px",
-          width: "90%",
-          margin: "auto",
-          textAlign: "center",
-          marginTop: "50px",
-          padding: "20px",
-          boxSizing: "border-box",
-        }}
-      >
-        <h2>Reset Password</h2>
-        <label id="label" htmlFor="">
-          Enter Old Password
-        </label>
-        <br />
-        <input  style={{ width: "100%", padding: "10px", marginTop: "10px" }}
-         id="inp" type="text" name="oldpassword" onChange={handleinput} />
-        <br />
-        <label id="label" htmlFor="">
-          Enter New Password
-        </label>
-        <br />
-        <input
-         style={{ width: "100%", padding: "10px", marginTop: "10px" }}
-          id="inp" type="text" name="newpassword" onChange={handleinput} />
-        <br />
-        <label id="label" htmlFor="">
-          Confirm New Password
-        </label>
-        <br />
-        <input
-         style={{ width: "100%", padding: "10px", marginTop: "10px" }}
-          id="inp"
-          type="text"
-          name="confirmnewpassword"
-          onChange={handleinput}
-        />
-        <br />
-        <button 
-         style={{
-          width: "100%",
-          padding: "10px",
-          marginTop: "20px",
-          fontSize: "1rem",
-        }}
-         id="button1" onClick={handlesubmit}>
-          reset password
-        </button>
-      </div>
+    <div id="bal">
+    <h2 className="resetpass-head">Password Reset</h2>
+    <label id="label" className="addmoney-label">
+    Enter old Password 
+    </label>
+   <input   style={{ width: "100%", padding: "10px", marginTop: "10px" }}
+          id="inp" type="password" value={oldpassword} onChange={(e)=>{setOldpassword(e.target.value)}} />
+    <label id="label" className="addmoney-label">
+    Enter new Password 
+    </label><input   style={{ width: "100%", padding: "10px", marginTop: "10px" }}
+          id="inp" type="password"  value={newpassword} onChange={(e)=>{setNewpassword(e.target.value)}} />
+   <label id="label" className="addmoney-label">
+    Confirm new Password 
+    </label><input   style={{ width: "100%", padding: "10px", marginTop: "10px" }}
+          id="inp" type="password"  value={repassword} onChange={(e)=>{setRepassword(e.target.value)}} />
+
+   <button id="button1"  style={{
+      width: "100%",
+      padding: "10px",
+      marginTop: "20px",
+      fontSize: "1rem",
+    }} onClick={handleSubmit}>Change Password</button>
+   </div>
       <ToastContainer />
     </>
   );

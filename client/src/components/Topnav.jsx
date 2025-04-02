@@ -10,7 +10,7 @@ const Topnav=()=>{
         <>
            <Navbar style={{ backgroundColor: " rgb(90, 9, 17)"  }}  data-bs-theme="dark">
         <Container>
-          <Navbar.Brand href="#home">  </Navbar.Brand>
+          <Navbar.Brand href="#home"> Bankhub  </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/home">Home</Nav.Link>
            
