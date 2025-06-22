@@ -2,11 +2,19 @@ const CustModel= require("../models/Custmodel");
 const Autopassword = require("../middleware/Autopassword")
 const nodemailer = require("nodemailer");
 const transactionModel = require("../models/TransactionModel")
-const Autoaccount = require("../middleware/Accno")
+const Autoaccount = require("../middleware/Accno");
+const Custmodel = require("../models/Custmodel");
+
+
 const Registration=async(req, res)=>{
     const {name,address, city, mobile,pincode,email} = req.body; 
     const mypass = Autopassword.Autopassword()
    const accno = Autoaccount.accNoGenerate()
+
+    const user = await Custmodel.findOne({email:email})
+    if(user){
+      return res.status(400).send({msg:"Email already registered"})
+    }
     try {
         const Customer = await CustModel.create({
             name:name,
@@ -23,7 +31,7 @@ const Registration=async(req, res)=>{
 
         res.status(201).send({msg:" Succesfully Registered!"});
     } catch (error) {
-           res.status(400).send({msg:"Data base not Work"})
+           res.status(400).send({msg:"error"})
     }
     
 var mailtransporter = nodemailer.createTransport({
@@ -54,20 +62,21 @@ var mailtransporter = nodemailer.createTransport({
 const CustLogin  = async(req , res)=>{
   const{email , password} = req.body
   const data = await CustModel.findOne({email : email,password:password})
+  
  try {
    if(data.email!=email)
    {
-     return res.status(400).send("Invalid email")
+    return  res.status(400).send({msg:"Invalid email"})
    }
    if(data.password !=password)
    {
-     return res.status(400).send("Invalid password")
+    return  res.status(400).send({msg:"Invalid password"})
    }
-   res.status(200).send(data)
+  res.status(200).send(data)
  } catch (error) {
-   res.status(400).send({msg:"Invalid email or username"})
+    res.status(400).send({msg:"Invalid email or password"})
  }
- 
+  
  }
  const SubmitCash = async(req ,res)=>{
 
@@ -80,8 +89,33 @@ const CustLogin  = async(req , res)=>{
       description:description
       
     })
-    res.status(200).send(data)
-  } catch (error) {
+    
+  
+  
+  const balancecheck = await transactionModel.find({customerid:customerid});
+  let bal = 0;
+  let saveamount =0;
+  let expenseamount =0;
+  balancecheck.map((key)=>{
+  if(key.status==="credit"){
+   saveamount= saveamount+key.amount;
+  }
+  if(key.status==="debit"){
+    expenseamount= expenseamount + key.amount;
+  }
+  })
+  bal = saveamount-expenseamount;
+  console.log(bal)
+ 
+
+ 
+   
+   
+   
+  
+  }
+  
+  catch (error) {
     res.status(400).send(error)
   }
  
@@ -144,7 +178,7 @@ const MiniStatement = async (req,res) =>{
   try {
       if( !fromDate || !endDate)
       {
-          return res.status(400).send("Both dates are required!")
+         return res.status(400).send("Both dates are required!")
       }
 
       const fromdate = new Date(fromDate);

@@ -93,7 +93,7 @@ const Ministatement = () => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>Transation Date</th>
+            <th>Transaction Date</th>
             <th>Description</th>
             <th>Debited Money</th>
             <th>Credited Money</th>

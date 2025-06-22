@@ -2,22 +2,29 @@ import React from "react";
 import { useState } from "react";
 import BASE_URL from "../configuration/Config";
 import axios from "axios";
-
+import { ToastContainer, toast } from 'react-toastify';
 const Withdraw = () => {
   const [gif, setGif] = useState(false);
   const [amount, setAmount] = useState("");
+  const [bal,setBal]=useState("")
 
   const customerid = localStorage.getItem("userid");
   const handlesubmit = async () => {
     let api = `${BASE_URL}/Banking/transaction`;
-    const res = await axios.post(api, {
-      amount: amount,
-      status: "debit",
-      customerid: customerid,
-      description: "cash withdraw"
-    });
-
-    setGif(true);
+    try {
+      const res = await axios.post(api, {
+        amount: amount,
+        status: "debit",
+        customerid: customerid,
+        description: "cash withdraw"
+      });
+      
+     
+      setGif(true);
+    } catch (error) {
+      toast.error(error.res.data.msg);
+    }
+  
   };
   setTimeout(() => {
     setGif(false);
@@ -67,7 +74,9 @@ const Withdraw = () => {
           <img src="/public/return bank GIF.gif" alt="" height="250px" />
         </div>
       )}
+        <ToastContainer />
     </div>
+
   );
 };
 
