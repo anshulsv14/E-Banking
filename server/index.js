@@ -1,22 +1,27 @@
 const express = require("express")
 const app = express();
-const CustRoute = require("./routes/Custroute")
 const cors = require("cors")
 const mongoose = require("mongoose")
 const bodyParser = require("body-parser")
 require("dotenv").config();
+const userRoute = require("./Routes/userRoutes")
 
-mongoose.connect(process.env.DBCONN).then(()=>{
-    console.log("DB connected!!!");
-})
+const PORT = process.env.PORT || 8000;
 
 app.use(cors());
-app.use(bodyParser.json()); 
+
+mongoose.connect(process.env.DBCONN).then(()=>{
+    console.log("DB connected!!");
+})
+
+
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
+app.use("/Customer", userRoute)
 
-
-app.use("/Banking" , CustRoute)
-app.listen(8000);
+app.listen(PORT, ()=>{
+    console.log(`Server Running on Port ${PORT}`);
     
+})

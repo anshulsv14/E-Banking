@@ -1,20 +1,22 @@
+import React from 'react'
 
+import Footer from './components/Footer'
+import TopNav from './components/Nav'
+import { Outlet } from 'react-router-dom'
 
-import { Outlet } from "react-router-dom";
-import Topnav from "./components/Topnav";
-import Footer from "./components/Footer";
+const Layout = () => {
+  return (
+    <>
+     
+      <TopNav />
 
-
-
-const Layout=()=>{
-    return(
-        <>
-           <Topnav/>
-            <Outlet/>
-         <Footer/>
-          
-        </>
-    )
+        <div className="wrapper">
+        <Outlet />
+        </div>
+    
+      <Footer />
+    </>
+  )
 }
 
-export default Layout;
+export default Layout

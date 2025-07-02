@@ -1,90 +1,98 @@
+import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
-
-import { useState } from 'react';
+import Form from 'react-bootstrap/Form';
+import {Link, useNavigate} from 'react-router-dom'
+import BASE_URL from '../config/Api_base';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import {toast} from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"; 
 
-import BASE_URL from '../configuration/Config';
+const Login = () => {
+
+   const [email,setEmail] = useState("")
+    const [password,setPassword] = useState("")
+    const nav = useNavigate();
 
 
 
-const Login=()=>{
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const navigate= useNavigate();
+    const handleSubmit=async()=>{
+        let api = `${BASE_URL}/Customer/login`
 
-   const handleSubmit=async(e)=>{
-    e.preventDefault();
-    let api=`${BASE_URL}/Banking/customerlogin`;
-
-    try {
-          const response = await axios.post(api, {email:email, password:password});
-          console.log(response.data); 
+        try {
         
-          
-          toast.success("You are Succesfully login!");
-          navigate("/dashboard");
-          localStorage.setItem("username" , response.data.name)
-          localStorage.setItem("userid" , response.data._id)
-          localStorage.setItem("email" , response.data.email)
- 
-    } catch (error) {
-        toast.error(error.response.data.msg);
-        
+            const response = await axios.post(api, {email:email, password:password})
+            console.log(response);
+            
+            localStorage.setItem("token" , response.data.token);
+            localStorage.setItem("name", response.data.customer.firstname)
+            localStorage.setItem("email", response.data.customer.email)
+            localStorage.setItem("custId", response.data.customer._id)
+            
+            toast.success("Login Successfully", {
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            theme: "colored",
+            });
+
+            nav("/dashboard")
+            
+        } 
+        catch (error) {
+            console.log(error);
+            toast.error(error.response.data, {
+               position: 'top-center',
+               autoClose: 3000,
+               hideProgressBar: false,
+               closeOnClick: true,
+               pauseOnHover: false,
+               draggable: true,
+               theme: 'dark'
+         });
+        }
     }
 
-   }
+    const userAuthenticate =async () =>{
+    const token = localStorage.getItem("token");
+    if(token)
+    {let api = `${BASE_URL}/customer/authentication`
+    const response = await axios.post(api,null ,{headers:{"x-auth-token": token}})
+    console.log(response.data);
+    nav("/dashboard")
+  }
+  }
 
+  useEffect(()=>{
+    userAuthenticate()
+  },[])
 
-    return(
-        <>
-      
-      <div id="build3">
-      <h1 className="title">LOGIN</h1>
-      <h6 className="subtitle">Don't worry, your details are safe with us</h6>
+  return (
+    <>
 
-      <div id="form-grid">
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="e.g Johndoe123@gmail.com"
-          />
-        </div>
+    <h1 className='loginTitle'>Account <span>Login</span></h1>
+      <Form className="form-container">
+  <Form.Group className="mb-3" controlId="formBasicEmail">
+    <Form.Label>Email address</Form.Label>
+    <Form.Control type="email" onChange={(e)=>{setEmail(e.target.value)}} />
+   
+  </Form.Group>
 
-        <div className="form-group">
-          <label htmlFor="password">PASSWORD</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="e.g JohnD#123"
-          />
-        </div>
-      </div>
-    
+  <Form.Group className="mb-3" controlId="formBasicPassword">
+    <Form.Label>Password</Form.Label>
+    <Form.Control type="password" onChange={(e)=>{setPassword(e.target.value)}} />
+  </Form.Group>
 
-      <Button id='bt1'     style={{backgroundColor:" rgb(90, 9, 17)",marginTop:"30px"}} type="submit" onClick={handleSubmit}>
-        Submit
-      </Button>
-      </div>
-  
-    
-    
+  <Button variant="primary" onClick={handleSubmit}>
+    Submit
+  </Button>
+  <h4 className='registerProm'>Don't have an Account? Click here: <Link to={'/registration'}>Registration</Link></h4>
+</Form>
 
-    <ToastContainer />
-        </>
-    )
+    </>
+  )
 }
 
-export default Login;
-
-
-
-
-     
+export default Login

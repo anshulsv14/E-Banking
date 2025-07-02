@@ -1,75 +1,66 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-function Dashboard() {
-  const nav = useNavigate();
-  let username = localStorage.getItem("username");
-  let email = localStorage.getItem("email");
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "../css/Dashboard.css";
+import { Link,Outlet } from "react-router-dom";
 
-  const logout = () => {
-    nav("/login");
-    localStorage.clear();
-  };
+const Dashboard = () => {
+  const nav = useNavigate();
+
   useEffect(() => {
-    if (!localStorage.getItem("email")) {
+    if (!localStorage.getItem("token")) {
       nav("/login");
+    } else {
     }
   }, []);
-  function navigate1() {
-    nav("/dashboard/submit");
-  }
-  function navigate2() {
-    nav("/dashboard/withdraw");
-  }
-  function navigate3() {
-    nav("/dashboard/balanceinquiry");
-  }
-  function navigate4() {
-    nav("/dashboard/accountstatement");
-  }
-  function navigate6() {
-    nav("/dashboard/resetpassword");
-  }
-  function navigate7() {
-    nav("/dashboard/ministatement");
-  }
-  function navigate5() {
-    nav("/dashboard/accountdetails");
-  }
-  return (
-    <>
-     
 
-<div className="containerdash">
-      {/* Upper Bar */}
-      <div className="upperbar">
-        <img src="/public/logo-with-text.png" alt="Logo" className="logo" />
-        {/* <div className="welcome-text">
-          <h1>Welcome:</h1>
-          <h1 className="username">{username}</h1>
-        </div> */}
-      </div>
+  const logout = () => {
+    localStorage.clear();
+    nav("/login");
+  };
+
+  return (
+    <div className="dashboard-container">
+  
+      <div className="navbar1">
+        <h2 className="navHead">People's Bank</h2>
+        <div className="rightnav">
+          <h1 className="welcomeLine"> Welcome: &nbsp;
+           {localStorage.getItem("name")}😊
+          </h1>
+
+          <button onClick={logout} className="btn-logout">
+          Logout
+        </button>
       
-      {/* Main Section */}
-      <div className="section">
-        {/* Left Sidebar */}
-        <div className="leftbar">
-          <button className="nav-button" onClick={navigate1}>Submit Cash</button>
-          <button className="nav-button" onClick={navigate2}>Withdraw Cash</button>
-          <button className="nav-button" onClick={navigate3}>Balance Enquiry</button>
-          <button className="nav-button" onClick={navigate4}>Account Statements</button>
-          <button className="nav-button" onClick={navigate7}>Mini Statements</button>
-          <button className="nav-button" onClick={navigate5}>Account Details</button>
-          <button className="nav-button" onClick={navigate6}>Reset Password</button>
-          <button className="logout-button" onClick={logout}>Logout</button>
         </div>
-        
-        {/* Right Content Area */}
-        <div className="rightbar">
-          <Outlet />
+        </div>
+
+      <div className="dashboard-main">
+
+        <div className="sidebar">
+          <ul>
+            
+            <Link to={"accountInfo"} className="link"><li>🏦 Account Info</li> </Link>
+            <Link to={"showbalance"} className="link"><li>💵 Show Balance</li> </Link>
+            <Link to={"statement"} className="link"><li>📜 Account Statement</li></Link>
+            <Link to={"ministatement"} className="link"><li>📄 Mini Statement</li></Link>
+            <Link to={"addmoney"} className="link"><li>💰 Add Money</li> </Link>
+            <Link to={"withdrawmoney"} className="link"><li>💸 Withdraw Money</li></Link>
+            <Link to={"resetpass"} className="link"><li>🔒 Reset Password</li></Link>
+          </ul>
+        </div>
+
+        <div className="dashboard-content">
+        <Outlet />
+
         </div>
       </div>
+
+      <ToastContainer />
     </div>
-    </>
   );
-}
+};
+
 export default Dashboard;

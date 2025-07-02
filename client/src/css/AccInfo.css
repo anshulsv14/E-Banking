@@ -1,0 +1,74 @@
+
+.account-page {
+    padding: 50px 100px;
+    font-family: "Poppins", sans-serif;
+}
+
+.account-title {
+    font-size: 38px;
+    font-weight: bold;
+    color:whitesmoke;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.account-info p {
+    font-size: 28px;
+    color:#e2ac9f;
+    /* margin: 15px 0; */
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.account-info p span {
+    font-weight: bold;
+    font-family: sans-serif;
+    color:#141E30;
+    margin-right: 35px;
+}
+
+.loading {
+    text-align: center;
+    font-size: 20px;
+    color: #888;
+    margin-top: 20px;
+}
+
+
+@media (max-width: 768px) {
+  .account-page {
+    padding: 20px 30px;
+  }
+
+  .account-title {
+    font-size: 26px;
+    text-align: center;
+  }
+
+  .account-info p {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  
+}
+
+@media (max-width: 428px) {
+  .account-page {
+    padding: 20px;
+  }
+
+  .account-title {
+    font-size: 18px;
+  }
+
+  .account-info p {
+    font-size: 14px;
+  }
+
+  .account-info p span {
+    margin-right: 15px
+  }
+}
